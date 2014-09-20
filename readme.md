@@ -2,6 +2,8 @@
 
 ##Prerequisites
 
+*Most of this is from the excellent repo [windows-packer](https://github.com/joefitzgerald/packer-windows) from joefitzgerald*
+
 You will new the following installed
 
 * [packer.io](http://www.packer.io/downloads.html) and follow these [instructions](http://www.packer.io/intro/getting-started/setup.html)
