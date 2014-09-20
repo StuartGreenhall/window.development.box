@@ -2,9 +2,9 @@
   "builders": [
     {
       "type": "vmware-iso",
-      "iso_url": "http://download.microsoft.com/download/B/9/9/B999286E-0A47-406D-8B3D-5B5AD7373A4A/9600.16384.WINBLUE_RTM.130821-1623_X64FRE_ENTERPRISE_EVAL_EN-US-IRM_CENA_X64FREE_EN-US_DV5.ISO",
+      "iso_url": "os-image/en-gb_windows_8.1_professional_vl_with_update_x64_dvd_4050386.iso",
       "iso_checksum_type": "md5",
-      "iso_checksum": "5e4ecb86fd8619641f1d58f96e8561ec",
+      "iso_checksum": "47bc6fa25f58b8df8aea107eff27210d",
       "headless": true,
       "boot_wait": "2m",
       "ssh_username": "vagrant",
@@ -17,7 +17,7 @@
       "vnc_port_min": 5900,
       "vnc_port_max": 5980,
       "floppy_files": [
-        "./answer_files/81/Autounattend.xml",
+        "./Autounattend.xml",
         "./scripts/microsoft-updates.bat",
         "./scripts/win-updates.ps1",
         "./scripts/openssh.ps1"
@@ -32,9 +32,9 @@
     },
     {
       "type": "virtualbox-iso",
-      "iso_url": "http://download.microsoft.com/download/B/9/9/B999286E-0A47-406D-8B3D-5B5AD7373A4A/9600.16384.WINBLUE_RTM.130821-1623_X64FRE_ENTERPRISE_EVAL_EN-US-IRM_CENA_X64FREE_EN-US_DV5.ISO",
+      "iso_url": "os-image/en-gb_windows_8.1_professional_vl_with_update_x64_dvd_4050386.iso",
       "iso_checksum_type": "md5",
-      "iso_checksum": "5e4ecb86fd8619641f1d58f96e8561ec",
+      "iso_checksum": "47bc6fa25f58b8df8aea107eff27210d",
       "headless": true,
       "boot_wait": "2m",
       "ssh_username": "vagrant",
@@ -44,9 +44,9 @@
       "guest_os_type": "Windows81_64",
       "disk_size": 61440,
       "floppy_files": [
-        "./answer_files/81/Autounattend.xml",
+        "./Autounattend.xml",
         "./scripts/microsoft-updates.bat",
-        "./scripts/win-updates.ps1",
+        "./scripts/win-updates.ps1",    
         "./scripts/openssh.ps1",
         "./scripts/oracle-cert.cer"
       ],
@@ -64,36 +64,6 @@
           "2"
         ]
       ]
-    }
-  ],
-  "provisioners": [
-    {
-      "type": "shell",
-      "remote_path": "/tmp/script.bat",
-      "execute_command": "{{.Vars}} cmd /c C:/Windows/Temp/script.bat",
-      "scripts": [
-        "./scripts/vm-guest-tools.bat",
-        "./scripts/chef.bat",
-        "./scripts/vagrant-ssh.bat",
-        "./scripts/disable-auto-logon.bat",
-        "./scripts/enable-rdp.bat",
-        "./scripts/compile-dotnet-assemblies.bat",
-        "./scripts/compact.bat"
-      ]
-    },
-    {
-      "type": "shell",
-      "inline": [
-        "rm -rf /tmp/*"
-      ]
-    }
-  ],
-  "post-processors": [
-    {
-      "type": "vagrant",
-      "keep_input_artifact": false,
-      "output": "windows_81_{{.Provider}}.box",
-      "vagrantfile_template": "vagrantfile-windows_81.template"
     }
   ]
 }
