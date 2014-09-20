@@ -1,5 +1,5 @@
 *.iso
 .DS_Store
-*output
+*output*
 packer_cache
 	
