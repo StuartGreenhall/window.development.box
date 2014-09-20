@@ -30,5 +30,34 @@
         "scsi0.virtualDev": "lsisas1068"
       }
     }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "remote_path": "/tmp/script.bat",
+      "execute_command": "{{.Vars}} cmd /c C:/Windows/Temp/script.bat",
+      "scripts": [
+        "./scripts/install-7zip.bat",
+        "./scripts/vm-guest-tools.bat",
+        "./scripts/install-chef.bat",
+        "./scripts/vagrant-ssh.bat",
+        "./scripts/disable-auto-logon.bat",
+        "./scripts/allow-rdp.bat"
+      ]
+    },
+    {
+      "type": "shell",
+      "inline": [
+        "rm -rf /tmp/*"
+      ]
+    }
+  ],
+  "post-processors": [
+    {
+      "type": "vagrant",
+      "keep_input_artifact": false,
+      "output": "windows_81_{{.Provider}}.box",
+      "vagrantfile_template": "windows-vagrantfile.template"
+    }
   ]
 }
