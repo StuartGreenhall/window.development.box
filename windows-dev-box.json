@@ -6,7 +6,7 @@
       "iso_checksum_type": "md5",
       "iso_checksum": "47bc6fa25f58b8df8aea107eff27210d",
       "headless": true,
-      "boot_wait": "2m",
+      "boot_wait": "1m",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_wait_timeout": "2h",
@@ -29,41 +29,6 @@
         "numvcpus": "2",
         "scsi0.virtualDev": "lsisas1068"
       }
-    },
-    {
-      "type": "virtualbox-iso",
-      "iso_url": "os-image/en-gb_windows_8.1_professional_vl_with_update_x64_dvd_4050386.iso",
-      "iso_checksum_type": "md5",
-      "iso_checksum": "47bc6fa25f58b8df8aea107eff27210d",
-      "headless": true,
-      "boot_wait": "2m",
-      "ssh_username": "vagrant",
-      "ssh_password": "vagrant",
-      "ssh_wait_timeout": "2h",
-      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
-      "guest_os_type": "Windows81_64",
-      "disk_size": 61440,
-      "floppy_files": [
-        "./Autounattend.xml",
-        "./scripts/microsoft-updates.bat",
-        "./scripts/win-updates.ps1",    
-        "./scripts/openssh.ps1",
-        "./scripts/oracle-cert.cer"
-      ],
-      "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "2048"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          "2"
-        ]
-      ]
     }
   ]
 }
