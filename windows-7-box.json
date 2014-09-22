@@ -1,7 +1,7 @@
 {
   "builders": [
     {
-      "type": "virtualbox-iso",
+      "type": "vmware-iso",
       "iso_url": "os-image/en_windows_7_ultimate_n_with_sp1_x86_dvd_u_677597.iso",
       "iso_checksum_type": "md5",
       "iso_checksum": "8d9c55270d91a25663517dbef9968c80",
@@ -11,28 +11,24 @@
       "ssh_password": "vagrant",
       "ssh_wait_timeout": "2h",
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
-      "guest_os_type": "Windows81_64",
+      "guest_os_type": "windows8srv-64",
+      "tools_upload_flavor": "windows",
       "disk_size": 61440,
+      "vnc_port_min": 5900,
+      "vnc_port_max": 5980,
       "floppy_files": [
-        "./anwser-files/windows-1/Autounattend.xml",
+        "./anwser-files/windows-7/Autounattend.xml",
         "./scripts/microsoft-updates.bat",
         "./scripts/win-updates.ps1",
         "./scripts/openssh.ps1"
       ],
-      "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "4096"
-        ],  
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          "4"
-        ]
-      ]
+      "vmx_data": {
+        "RemoteDisplay.vnc.enabled": "false",
+        "RemoteDisplay.vnc.port": "5900",
+        "memsize": "4096",
+        "numvcpus": "4",
+        "scsi0.virtualDev": "lsisas1068"
+      }
     }
   ],
   "provisioners": [
@@ -46,7 +42,7 @@
         "./scripts/install-chef.bat",
         "./scripts/vagrant-ssh.bat",
         "./scripts/disable-auto-logon.bat",
-        "./scripts/allow-rdp.bat"
+        "./scripts/allow-rdp.bat",
       ]
     },
     {

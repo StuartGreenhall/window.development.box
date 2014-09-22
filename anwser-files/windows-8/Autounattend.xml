@@ -31,7 +31,7 @@
                 <AcceptEula>true</AcceptEula>
                 <FullName>Vagrant Administrator</FullName>
                 <Organization>Vagrant Inc.</Organization>
-                <ProductKey>Your Key Goes here
+                <ProductKey>YOUR_KEY_GOES_HERE
                     <WillShowUI>Never</WillShowUI>
                 </ProductKey>
             </UserData>
